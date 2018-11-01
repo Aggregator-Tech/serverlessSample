@@ -1,17 +1,14 @@
-package ab.sample.serverless.topic.query;
+package sample.serverless.topic.query;
 
-import ab.sample.serverless.topic.object.Topic;
+import sample.serverless.topic.object.Topic;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
-import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class TopicQuery implements RequestHandler<Request, Response> {
 

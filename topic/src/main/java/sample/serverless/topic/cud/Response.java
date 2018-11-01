@@ -1,7 +1,7 @@
-package ab.sample.serverless.topic.cud;
+package sample.serverless.topic.cud;
 
 
-import ab.sample.serverless.topic.object.Topic;
+import sample.serverless.topic.object.Topic;
 
 public class Response {
     String message;

@@ -1,7 +1,7 @@
-package ab.sample.serverless.topic.query;
+package sample.serverless.topic.query;
 
 
-import ab.sample.serverless.topic.object.Topic;
+import sample.serverless.topic.object.Topic;
 
 import java.util.List;
 

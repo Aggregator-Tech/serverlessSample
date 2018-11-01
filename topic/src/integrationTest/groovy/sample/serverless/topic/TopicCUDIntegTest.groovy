@@ -1,4 +1,4 @@
-package ab.sample.serverless.topic.cud
+package sample.serverless.topic
 
 import com.amazonaws.regions.Regions
 import com.amazonaws.services.lambda.AWSLambda

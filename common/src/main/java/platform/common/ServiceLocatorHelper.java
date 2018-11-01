@@ -26,18 +26,22 @@ public class ServiceLocatorHelper {
   }
 
   private static void populateServices() {
-    try {
       setServiceLocator(ServiceLocatorUtilities.createAndPopulateServiceLocator());
+      ServiceLocatorUtilities.enablePerThreadScope(serviceLocator);
+      populateServicesFromPackage(Constants.PLATFORM_PACKAGE);
+      populateServicesFromPackage(Constants.SAMPLE_PACKAGE);
+  }
 
-      ImmutableSet<ClassPath.ClassInfo> allClasses =
-          ClassPath.from(ClassLoader.getSystemClassLoader())
-              .getTopLevelClassesRecursive(Constants.PLATFORM_PACKAGE);
-      Class<?>[] serviceClasses = allClasses.stream()
-          .map(ClassPath.ClassInfo::load)
-          .filter(classObject -> classObject.isAnnotationPresent(Service.class))
-          .toArray(Class[]::new);
-      ServiceLocatorUtilities.addClasses(getServiceLocator(), serviceClasses);
-
+  private static void populateServicesFromPackage(String packageName){
+    try {
+    ImmutableSet<ClassPath.ClassInfo> allClasses =
+            ClassPath.from(ClassLoader.getSystemClassLoader())
+                    .getTopLevelClassesRecursive(packageName);
+    Class<?>[] serviceClasses = allClasses.stream()
+            .map(ClassPath.ClassInfo::load)
+            .filter(classObject -> classObject.isAnnotationPresent(Service.class))
+            .toArray(Class[]::new);
+    ServiceLocatorUtilities.addClasses(getServiceLocator(), serviceClasses);
     } catch (IOException e) {
       e.printStackTrace();
     }

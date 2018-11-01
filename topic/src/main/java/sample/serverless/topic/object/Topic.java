@@ -1,23 +1,25 @@
-package ab.sample.serverless.topic.object;
+package sample.serverless.topic.object;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
-@DynamoDBTable(tableName = "topic")
+@DynamoDBTable(tableName = "spaceTopics")
 public class Topic {
 
+    private String spaceId;
     private String topicId;
     private String topicTitle;
     private String topicContent;
 
-    public Topic(String topicTitle, String topicContent) {
+    public Topic(String spaceId, String topicTitle, String topicContent) {
+        this.spaceId = spaceId;
         this.topicTitle = topicTitle;
         this.topicContent = topicContent;
     }
 
-    public Topic(String topicId, String topicTitle, String topicContent) {
-        this(topicTitle, topicContent);
+    public Topic(String topicId, String spaceId, String topicTitle, String topicContent) {
+        this(spaceId, topicTitle, topicContent);
         this.topicId = topicId;
     }
 
@@ -25,7 +27,16 @@ public class Topic {
 
     }
 
-    @DynamoDBHashKey(attributeName="topicId")
+    @DynamoDBHashKey(attributeName="spaceId")
+    public String getSpaceId() {
+        return spaceId;
+    }
+
+    public void setSpaceId(String spaceId) {
+        this.spaceId = spaceId;
+    }
+
+    @DynamoDBAttribute
     public String getTopicId() {
         return topicId;
     }
@@ -34,7 +45,7 @@ public class Topic {
         this.topicId = topicId;
     }
 
-    @DynamoDBHashKey(attributeName="topicTitle")
+    @DynamoDBAttribute
     public String getTopicTitle() {
         return topicTitle;
     }
