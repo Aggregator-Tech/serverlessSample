@@ -21,12 +21,18 @@ public class TopicCUD implements RequestHandler<Request, Response> {
     public TopicCUD() {
         this.serviceLocator = ServiceLocatorHelper.getServiceLocator();
     }
+    public TopicCUD(ServiceLocator serviceLocator) {
+        this.serviceLocator = serviceLocator;
+    }
 
     public Response handleRequest(Request request, Context context) {
         context.getLogger().log("Input: " + request.getOperation() + " " + request.getTopic().getTopicTitle());
         Response response;
+        context.getLogger().log("Setting context");
+        serviceLocator.getService(RequestHolder.class).setContext(context);
+        context.getLogger().log("Handling request");
         response = serviceLocator.getService(RequestHandlerFactory.class).getService(request)
-                .handle(request);
+                .handle(request,context);
 
         context.getLogger().log("Output: " + response.getTopic().getTopicId());
         return response;

@@ -4,11 +4,14 @@ import com.amazonaws.regions.Regions
 import com.amazonaws.services.lambda.AWSLambda
 import com.amazonaws.services.lambda.AWSLambdaClientBuilder
 import com.amazonaws.services.lambda.model.InvokeRequest
-import com.amazonaws.services.lambda.model.InvokeResult;
+import com.amazonaws.services.lambda.model.InvokeResult
+import sample.serverless.topic.cud.Request
+import sample.serverless.topic.cud.TopicCUD
+import sample.serverless.topic.object.Topic;
 import spock.lang.Specification
 
 class TopicCUDIntegTest extends Specification{
-    def "Test Create Topic" () {
+    def "Test Remote Create Topic" () {
         setup:
         Regions region = Regions.fromName("us-east-2");
         System.setProperty("aws.accessKeyId","AKIAIFIDD3SKLA2ALV3A")

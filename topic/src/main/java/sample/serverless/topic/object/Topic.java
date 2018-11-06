@@ -4,7 +4,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
-@DynamoDBTable(tableName = "spaceTopics")
+@DynamoDBTable(tableName = "topics")
 public class Topic {
 
     private String spaceId;
@@ -27,7 +27,7 @@ public class Topic {
 
     }
 
-    @DynamoDBHashKey(attributeName="spaceId")
+    @DynamoDBAttribute
     public String getSpaceId() {
         return spaceId;
     }
@@ -36,7 +36,7 @@ public class Topic {
         this.spaceId = spaceId;
     }
 
-    @DynamoDBAttribute
+    @DynamoDBHashKey(attributeName="topicId")
     public String getTopicId() {
         return topicId;
     }
